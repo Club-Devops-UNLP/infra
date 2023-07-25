@@ -32,3 +32,5 @@ terraform.rc
 
 # Terraform Files
 .terraform
+*.tfstate
+*.backup
