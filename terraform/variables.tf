@@ -38,6 +38,19 @@ variable "secret_key" {
   sensitive   = true
 }
 
+variable "aws_key_pair_name" {
+  description = "Name of the AWS key pair to create"
+  type        = string
+  default     = "member-key"
+}
+
+variable "aws_key_pair_public_key" {
+  description = "Path to store the AWS key pair"
+  type        = string
+  default     = ""
+  sensitive   = true
+}
+
 ############## IAM ##############
 
 variable "admin_group_name" {
