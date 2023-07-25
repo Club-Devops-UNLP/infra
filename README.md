@@ -6,6 +6,7 @@
 
 - [Terraform](https://www.terraform.io/downloads.html)
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+- [AWS Free Tier](https://aws.amazon.com/free/)
 
 
 ### Que es Terraform? 💜
