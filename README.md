@@ -24,3 +24,9 @@
 1. En este repositorio voy a explicando como levantar una infraestructura en AWS con Terraform.
 2. Utilizando el free tier de AWS, este mismo dura 12 meses asi que podemos utilizarlo sin problemas.
 3. Una vez terminado nuestro free tier, podemos borrar la infraestructura creada y nos crearemos otra cuenta para seguir utilizando el free tier.
+
+### Como estoy pensando la infraestructura? 🤔
+
+- Work in progress
+
+![IMG](./design/Infra_Club_Devops.png)
