@@ -23,24 +23,24 @@ resource "aws_instance" "clubdevops" {
 }
 
 resource "aws_iam_group" "administrators" {
-  name = "Administrators"
-  path = "/club-devops"
+  name = var.admin_group_name
+  path = var.admin_group_path
 }
 
 resource "aws_iam_group" "members" {
-  name = "Members"
-  path = "/club-devops"
+  name = var.member_group_name
+  path = var.member_group_path
 }
 
 resource "aws_iam_group" "guests" {
-  name = "Guest"
-  path = "/club-devops"
+  name = var.guest_group_name
+  path = var.guest_group_path
 }
 
 resource "aws_iam_policy" "administrators_access" {
   name        = "AdministratorsAccess"
-  path        = "/club-devops"
-  description = "DevOps club administrators access"
+  path        = var.admin_group_path
+  description = var.admin_group_policy_description
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -58,8 +58,8 @@ resource "aws_iam_policy" "administrators_access" {
 
 resource "aws_iam_policy" "members_access" {
   name        = "MembersAccess"
-  path        = "/club-devops"
-  description = "DevOps club members access"
+  path        = var.member_group_path
+  description = var.member_group_policy_description
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -79,9 +79,9 @@ resource "aws_iam_policy" "members_access" {
 }
 
 resource "aws_iam_policy" "guests_access" {
-  name        = "GuestAccess"
-  path        = "/club-devops"
-  description = "Outside members access"
+  name        = "GuestsAccess"
+  path        = var.admin_group_path
+  description = var.guest_group_policy_description
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -97,40 +97,50 @@ resource "aws_iam_policy" "guests_access" {
   })
 }
 
-resource "aws_iam_group_policy_attachment" "administrators" {
+resource "aws_iam_group_policy_attachment" "administrators-attach" {
   group      = aws_iam_group.administrators.name
-  policy_arn = aws_iam_group.administrators.arn
+  policy_arn = aws_iam_policy.administrators_access.arn
 }
 
-resource "aws_iam_group_policy_attachment" "members" {
+resource "aws_iam_group_policy_attachment" "members-attach" {
   group      = aws_iam_group.members.name
-  policy_arn = aws_iam_group.members.arn
+  policy_arn = aws_iam_policy.members_access.arn
 }
 
-resource "aws_iam_group_policy_attachment" "guests" {
+resource "aws_iam_group_policy_attachment" "guests-attach" {
   group      = aws_iam_group.guests.name
-  policy_arn = aws_iam_group.guests.arn
+  policy_arn = aws_iam_policy.guests_access.arn
 }
 
 resource "aws_iam_user" "administrator" {
-  name = "Administrator"
+  name = var.admin_group_name
 }
 
 resource "aws_iam_user" "members" {
-  name = "Members"
+  name = var.member_group_name
 }
 
 resource "aws_iam_user" "guest" {
-  name = "Guest"
+  name = var.guest_group_name
 }
 
-resource "aws_iam_user_group_membership" "devops_unlp" {
+resource "aws_iam_user_group_membership" "admin" {
   user   = aws_iam_user.administrator.name
-  groups = [aws_iam_group.administrators.name, aws_iam_group.members.name, aws_iam_group.guests.name]
+  groups = [aws_iam_group.administrators.name]
 }
 
-resource "aws_iam_user_login_profile" "administrator" {
-  user                    = aws_iam_user.administrator.name
+resource "aws_iam_user_group_membership" "member" {
+  user   = aws_iam_user.members.name
+  groups = [aws_iam_group.members.name]
+}
+
+resource "aws_iam_user_group_membership" "guest" {
+  user   = aws_iam_user.guest.name
+  groups = [aws_iam_group.guests.name]
+}
+
+resource "aws_iam_user_login_profile" "member" {
+  user                    = aws_iam_user.members.name
   password_length         = 20
   password_reset_required = true
 }

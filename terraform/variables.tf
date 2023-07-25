@@ -38,3 +38,58 @@ variable "secret_key" {
   sensitive   = true
 }
 
+############## IAM ##############
+
+variable "admin_group_name" {
+  description = "Name of the admin group"
+  type        = string
+  default     = "Administrators"
+}
+
+variable "admin_group_path" {
+  description = "Path for the admin group"
+  type        = string
+  default     = "/"
+}
+
+variable "admin_group_policy_description" {
+  description = "Description for the admin group policy"
+  type        = string
+  default     = "Administrators have full access to EC2 resources"
+}
+
+variable "member_group_name" {
+  description = "Name of the member group"
+  type        = string
+  default     = "Members"
+}
+
+variable "member_group_path" {
+  description = "Path for the member group"
+  type        = string
+  default     = "/"
+}
+
+variable "member_group_policy_description" {
+  description = "Description for the member group policy"
+  type        = string
+  default     = "Members have access EC2 resources"
+}
+
+variable "guest_group_name" {
+  description = "Name of the guest group"
+  type        = string
+  default     = "Guests"
+}
+
+variable "guest_group_path" {
+  description = "Path for the guest group"
+  type        = string
+  default     = "/"
+}
+
+variable "guest_group_policy_description" {
+  description = "Description for the guest group policy"
+  type        = string
+  default     = "Guests have read-only access to all resources"
+}

@@ -10,6 +10,9 @@ plan:
 apply:
 	terraform apply -auto-approve -var-file="secret.tfvars"
 
+get:
+	terraform get
+
 clean:
 	rm terraform.tfstate
 
