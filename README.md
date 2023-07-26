@@ -30,4 +30,4 @@
 
 - Work in progress
 
-![IMG](./design/Infra_Club_Devops.png)
+![IMG](./design/Infra_Club_Devops_V0.2.png)
