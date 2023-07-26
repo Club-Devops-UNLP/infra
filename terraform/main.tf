@@ -125,16 +125,17 @@ resource "aws_instance" "clubdevops" {
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.subnet_base.id
   vpc_security_group_ids      = [aws_security_group.ingress-all.id]
+  key_name                    = aws_key_pair.ssh_key.key_name
+
 
   tags = {
     Name = var.instance_name
   }
 }
 
-resource "aws_key_pair" "member" {
-  depends_on = [aws_instance.clubdevops]
-  key_name   = var.aws_key_pair_name
-  public_key = var.aws_key_pair_public_key
+resource "aws_key_pair" "ssh_key" {
+  key_name   = "club-devops-key"
+  public_key = file("~/.ssh/club-devops-key.pub")
 }
 
 
