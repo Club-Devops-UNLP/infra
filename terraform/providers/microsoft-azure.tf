@@ -1,4 +1,4 @@
-## TODO: Update permissions for each resource
+## Base provider configuration
 
 terraform {
   required_providers {

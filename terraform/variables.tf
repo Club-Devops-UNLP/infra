@@ -106,3 +106,40 @@ variable "guest_group_policy_description" {
   type        = string
   default     = "Guests have read-only access to all resources"
 }
+
+############## AZURE ##############
+
+variable "prefix" {
+  default = "cvu"
+}
+
+variable "subscription_id" {
+  default     = ""
+  sensitive   = true
+  description = "Azure Subscription ID"
+}
+
+variable "client_id" {
+  default     = ""
+  sensitive   = true
+  description = "Azure Client ID"
+}
+
+variable "client_secret" {
+  default     = ""
+  sensitive   = true
+  description = "Azure Client Secret"
+}
+
+variable "tenant_id" {
+  default     = ""
+  sensitive   = true
+  description = "Azure Tenant ID"
+}
+
+variable "azure_key_pair_public_key" {
+  description = "Path to store the Azure key pair"
+  type        = string
+  default     = ""
+  sensitive   = true
+}

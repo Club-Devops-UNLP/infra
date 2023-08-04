@@ -6,6 +6,8 @@
 
 - [Terraform](https://www.terraform.io/downloads.html)
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+
+- [Azure Free Tier](https://azure.microsoft.com/es-es/free/)
 - [AWS Free Tier](https://aws.amazon.com/free/)
 - Preferiblemente un sistema operativo basado en Unix (Linux, MacOS, etc)
 

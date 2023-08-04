@@ -5,26 +5,23 @@ prepare:
 
 #### Terraform
 
-change_dir:
-	cd terraform
-
 init:
-	make change_dir && make init
+	cd terraform && make init
 
 upgrade:
-	make change_dir && make upgrade
+	cd terraform && make upgrade
 
 plan:
-	make change_dir && make plan
+	cd terraform && make plan
 
 apply:
-	make change_dir && make apply
+	cd terraform && make apply
 
 get:
-	make change_dir && make get
+	cd terraform && make get
 
 clean:
-	make change_dir && make clean
+	cd terraform && make clean
 
 destroy:
-	make change_dir && make destroy
+	cd terraform && make destroy

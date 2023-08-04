@@ -1,6 +1,12 @@
 [aws_development]
 44.217.222.23
 
+[azure_development]
+
 [aws_development:vars]
 ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=$HOME/.ssh/club-devops-key.pem
+
+[azure_development:vars]
+ansible_ssh_user=azureuser
 ansible_ssh_private_key_file=$HOME/.ssh/club-devops-key.pem
