@@ -55,14 +55,14 @@ resource "azurerm_virtual_machine" "main" {
   location                         = azurerm_resource_group.club-devops.location
   resource_group_name              = azurerm_resource_group.club-devops.name
   network_interface_ids            = [azurerm_network_interface.main.id]
-  vm_size                          = "B1s"
+  vm_size                          = "Standard_B1ls"
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = true
 
   storage_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "22.04-LTS"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
 
@@ -78,16 +78,19 @@ resource "azurerm_virtual_machine" "main" {
     admin_username = "adminuser"
     admin_password = "Password1234"
   }
-
+  os_profile_linux_config {
+        disable_password_authentication = false
+  }
   tags = {
     name        = "club-devops"
     environment = "staging"
   }
+  
 }
 
-resource "azurerm_ssh_public_key" "ssh_key" {
-  name                = "club-devops-ssh-key"
-  resource_group_name = azurerm_resource_group.club-devops.name
-  location            = azurerm_resource_group.club-devops.location
-  public_key          = var.azure_key_pair_public_key
-}
+#resource "azurerm_ssh_public_key" "ssh_key" {
+#  name                = "club-devops-ssh-key"
+#  resource_group_name = azurerm_resource_group.club-devops.name
+#  location            = azurerm_resource_group.club-devops.location
+#  public_key          = var.azure_key_pair_public_key
+#}
