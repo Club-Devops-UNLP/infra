@@ -1,5 +1,3 @@
-## TODO: Update permissions for each resource
-
 terraform {
   required_providers {
     azurerm = {
@@ -10,11 +8,18 @@ terraform {
 }
 
 provider "azurerm" {
-  features {}
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
 
-  subscription_id            = var.subscription_id
-  client_id                  = var.client_id
-  client_secret              = var.client_secret
+  subscription_id = var.subscription_id
+  ####################
+  # TODO: Why is throwing an error when using the following variables?
+  # client_id                  = var.client_id 
+  # client_secret              = var.client_secret
+  ####################
   tenant_id                  = var.tenant_id
   skip_provider_registration = true # This is only required when the User, Service Principal, or Identity running Terraform lacks the permissions to register Azure Resource Providers.
 }
@@ -79,18 +84,18 @@ resource "azurerm_virtual_machine" "main" {
     admin_password = "Password1234"
   }
   os_profile_linux_config {
-        disable_password_authentication = false
+    disable_password_authentication = false
   }
   tags = {
     name        = "club-devops"
     environment = "staging"
   }
-  
+
 }
 
-#resource "azurerm_ssh_public_key" "ssh_key" {
-#  name                = "club-devops-ssh-key"
-#  resource_group_name = azurerm_resource_group.club-devops.name
-#  location            = azurerm_resource_group.club-devops.location
-#  public_key          = var.azure_key_pair_public_key
-#}
+resource "azurerm_ssh_public_key" "ssh_key" {
+  name                = "club-devops-ssh-key"
+  resource_group_name = azurerm_resource_group.club-devops.name
+  location            = azurerm_resource_group.club-devops.location
+  public_key          = var.azure_key_pair_public_key
+}

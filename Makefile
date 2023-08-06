@@ -25,3 +25,11 @@ clean:
 
 destroy:
 	cd terraform && make destroy
+
+#### Azure
+
+login:
+	az login
+
+logout:
+	az logout

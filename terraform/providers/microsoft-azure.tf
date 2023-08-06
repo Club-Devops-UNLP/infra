@@ -10,11 +10,18 @@ terraform {
 }
 
 provider "azurerm" {
-  features {}
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
 
-  subscription_id            = var.subscription_id
-  client_id                  = var.client_id
-  client_secret              = var.client_secret
+  subscription_id = var.subscription_id
+  ####################
+  # TODO: Why is throwing an error when using the following variables?
+  # client_id                  = var.client_id 
+  # client_secret              = var.client_secret
+  ####################
   tenant_id                  = var.tenant_id
   skip_provider_registration = true # This is only required when the User, Service Principal, or Identity running Terraform lacks the permissions to register Azure Resource Providers.
 }
@@ -55,14 +62,14 @@ resource "azurerm_virtual_machine" "main" {
   location                         = azurerm_resource_group.club-devops.location
   resource_group_name              = azurerm_resource_group.club-devops.name
   network_interface_ids            = [azurerm_network_interface.main.id]
-  vm_size                          = "B1s"
+  vm_size                          = "Standard_B1ls"
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = true
 
   storage_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "22.04-LTS"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
 
@@ -78,11 +85,14 @@ resource "azurerm_virtual_machine" "main" {
     admin_username = "adminuser"
     admin_password = "Password1234"
   }
-
+  os_profile_linux_config {
+    disable_password_authentication = false
+  }
   tags = {
     name        = "club-devops"
     environment = "staging"
   }
+
 }
 
 resource "azurerm_ssh_public_key" "ssh_key" {

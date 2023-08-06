@@ -6,11 +6,18 @@
 
 - [Terraform](https://www.terraform.io/downloads.html)
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+- Un sistema operativo basado en Unix (Linux, MacOS, etc)
 
-- [Azure Free Tier](https://azure.microsoft.com/es-es/free/)
-- [AWS Free Tier](https://aws.amazon.com/free/)
-- Preferiblemente un sistema operativo basado en Unix (Linux, MacOS, etc)
+### Provedores de nube 🌩
 
+Estos son los provedores de nube que vamos a probar en este repositorio, se va a ir armando la intraestructura en cada uno de ellos. Los archivos de configuracion de cada provedor se encuentran en la carpeta terraform/providers.
+
+- [Amazon Web Services](https://aws.amazon.com/es/) - ✅
+- [Microsoft Azure](https://azure.microsoft.com/es-es/) - ✅
+- [Digital Ocean](https://www.digitalocean.com/)
+- [Oracle Cloud](https://www.oracle.com/cloud/)
+- [Google Cloud](https://cloud.google.com/)
+- [IBM Cloud](https://www.ibm.com/cloud)
 
 ### Que es Terraform? 💜
 
@@ -26,7 +33,7 @@
 ### Que logramos con este repositorio ❓
 
 1. En este repositorio voy a explicando como levantar una infraestructura en AWS con Terraform y Ansible.
-2. Utilizando el free tier de AWS, este mismo dura 12 meses asi que podemos utilizarlo sin problemas.
+2. Utilizando los free tier podemos alojar nuestra infraestructura sin costo.
 3. Una vez terminado nuestro free tier, podemos borrar la infraestructura creada y nos crearemos otra cuenta para seguir utilizando el free tier, ahorrando toda la configuracion manual que se requiere para levantar una infraestructura.
 4. Aprendemos sobre infraestructura como codigo, automatizacion y orquestacion de tareas.
 
@@ -76,4 +83,9 @@ Las siguientes variables en esta tabla son necesarias para la configuración de 
 | access_key | AWS Access Key ID |
 | secret_key | AWS Secret Access Key |
 | aws_key_pair_public_key | SSH Public Key |
+| subscription_id | Azure Subscription ID |
+| client_id | Azure Client ID |
+| client_secret | Azure Client Secret |
+| tenant_id | Azure Tenant ID |
+| azure_key_pair_public_key | SSH Public Key |
 
