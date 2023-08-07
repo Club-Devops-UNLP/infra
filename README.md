@@ -70,6 +70,7 @@ Estos son los provedores de nube que vamos a probar en este repositorio, se va a
 
 - Work in progress
 
+![IMG](./design/Infra_Idea_V0.1.png)
 ![IMG](./design/Infra_Club_Devops_V0.2.png)
 
 ### Utilizamos variables de entorno ❓
