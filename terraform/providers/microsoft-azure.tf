@@ -103,6 +103,18 @@ resource "azurerm_virtual_machine" "main" {
 
 }
 
+resource "azurerm_virtual_machine_extension" "jit_vm_access" {
+  name                       = "JIT-VM-Access"
+  virtual_machine_id         = azurerm_virtual_machine.main.id
+  publisher                  = "Microsoft.Azure.Security"
+  type                       = "AzureJitAccess"
+  type_handler_version       = "1.4"
+  auto_upgrade_minor_version = true
+  settings = jsondecode({
+    "durationInSeconds" = 3600
+  })
+}
+
 resource "azurerm_ssh_public_key" "ssh_key" {
   name                = "club-devops-ssh-key"
   resource_group_name = azurerm_resource_group.club-devops.name
