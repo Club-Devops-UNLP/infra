@@ -143,3 +143,27 @@ variable "azure_key_pair_public_key" {
   default     = ""
   sensitive   = true
 }
+
+############## DO ##############
+
+variable "do_token" {
+  description = "Digital Ocean token"
+  type        = string
+  default     = ""
+  sensitive   = true
+}
+
+variable "do_key_pair_public_key" {
+  description = "Public key for the Digital Ocean key pair"
+  type        = string
+  default     = ""
+  sensitive   = false
+}
+
+variable "do_key_pair_private_key" {
+  description = "Path to store the Digital Ocean key pair"
+  type        = string
+  default     = ""
+  sensitive   = true
+}
+

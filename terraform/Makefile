@@ -15,6 +15,9 @@ get:
 
 clean:
 	rm terraform.tfstate
+	rm terraform.tfstate.backup
+	rm -rf .terraform
+	rm .terraform.lock.hcl
 
 destroy:
 	terraform destroy -auto-approve

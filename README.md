@@ -14,7 +14,7 @@ Estos son los provedores de nube que vamos a probar en este repositorio, se va a
 
 - [Amazon Web Services](https://aws.amazon.com/es/) - ✅
 - [Microsoft Azure](https://azure.microsoft.com/es-es/) - ✅
-- [Digital Ocean](https://www.digitalocean.com/)
+- [Digital Ocean](https://www.digitalocean.com/) - ✅
 - [Oracle Cloud](https://www.oracle.com/cloud/)
 - [Google Cloud](https://cloud.google.com/)
 - [IBM Cloud](https://www.ibm.com/cloud)
